@@ -80,14 +80,6 @@ func TestArray(t *testing.T) {
 	fmt.Printf("\nТак вот откуда взялась цифра capacity=9:\nэто длина массива, из которого мы сделали срез (10) минус первый индекс среза (1)\n\n")
 }
 
-func Benchmark10intArray(b *testing.B) {
-	array := [10]int{}
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		_ = len(array)
-	}
-}
-
 func Benchmark1000intArray(b *testing.B) {
 	array := [1000]int{}
 	b.ResetTimer()
