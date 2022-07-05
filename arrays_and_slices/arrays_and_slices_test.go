@@ -80,14 +80,6 @@ func TestArray(t *testing.T) {
 	fmt.Printf("\nТак вот откуда взялась цифра capacity=9:\nэто длина массива, из которого мы сделали срез (10) минус первый индекс среза (1)\n\n")
 }
 
-func Benchmark1000intArray(b *testing.B) {
-	array := [1000]int{}
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		_ = len(array)
-	}
-}
-
 func TestDynamicArray(t *testing.T) {
 	dynamicArray := make([]int, 10)
 	fmt.Println(dynamicArray)
@@ -97,7 +89,7 @@ func TestDynamicArray(t *testing.T) {
 
 func TestDynamicArrayDemo(t *testing.T) {
 	fmt.Println("Dynamic array address demonstration")
-	dynamicArray := []int{}
+	dynamicArray := make([]int, 0)
 
 	for i := 0; i < 100; i++ {
 		fmt.Printf("pointer: %p\tcap: %d\tcontent: %v\n", &dynamicArray, cap(dynamicArray), dynamicArray)
@@ -113,4 +105,32 @@ func TestDynamicArrayFirstElementAddressDemo(t *testing.T) {
 		dynamicArray = append(dynamicArray, i)
 		fmt.Printf("pointer: %p\tcap: %d\t[0]element pointer: %p\n", &dynamicArray, cap(dynamicArray), &dynamicArray[0])
 	}
+}
+
+func TestClearSlice(t *testing.T) {
+	fmt.Printf("Демонстрация очистки среза\n\n")
+
+	slice := make([]int, 10)
+	for i := 0; i < 10; i++ {
+		slice[i] = i
+	}
+
+	slice1 := slice
+	fmt.Printf("%v, cap=%d\n", slice1, cap(slice1))
+
+	fmt.Printf("Пример очистки под ноль\n")
+	slice1 = nil
+	fmt.Printf("%v, cap=%d\n", slice1, cap(slice1))
+
+	fmt.Printf("Кстати, сохранились ли значения первого слайса?\n")
+	fmt.Printf("%v, cap=%d\n", slice, cap(slice))
+
+	fmt.Printf("Куда более интересный вариант с сохранением выделенного буфера\n")
+
+	slice1 = slice
+	slice1 = slice1[:0]
+	fmt.Printf("%v, cap=%d\n", slice1, cap(slice1))
+
+	fmt.Printf("А что там с исходным слайсом?\n")
+	fmt.Printf("%v, cap=%d\n", slice, cap(slice))
 }

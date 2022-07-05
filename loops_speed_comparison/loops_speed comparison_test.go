@@ -50,15 +50,6 @@ func CPPLoop(arr []int) int {
 	return res
 }
 
-func CPPSmartLoop(arr []int) int {
-	res := 0
-	count := len(arr)
-	for i := 0; i < count; i++ {
-		res += arr[i]
-	}
-	return res
-}
-
 func BenchmarkStandardLoop(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -84,12 +75,5 @@ func BenchmarkCPPLoop(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		CPPLoop(arr)
-	}
-}
-
-func BenchmarkCPPSmartLoop(b *testing.B) {
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		CPPSmartLoop(arr)
 	}
 }
