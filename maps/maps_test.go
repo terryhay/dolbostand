@@ -28,5 +28,4 @@ func TestMaps(t *testing.T) {
 	fmt.Printf("%p: %v\n", &map2, map2)
 
 	fmt.Printf("Получается, общий (копируются мэпы только через цикл)\n")
-
 }

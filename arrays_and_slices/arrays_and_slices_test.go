@@ -99,7 +99,7 @@ func TestDynamicArrayDemo(t *testing.T) {
 
 func TestDynamicArrayFirstElementAddressDemo(t *testing.T) {
 	fmt.Println("Dynamic array reallocation demonstration")
-	dynamicArray := []int{}
+	dynamicArray := make([]int, 0)
 
 	for i := 0; i < 100; i++ {
 		dynamicArray = append(dynamicArray, i)

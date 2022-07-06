@@ -42,7 +42,7 @@ func TestCoping(t *testing.T) {
 		slice := []int{1, 2, 3}
 		copySlice := []int{0, 0, 0}
 
-		slice = copySlice
+		copySlice = slice
 		fmt.Printf("v[%p]=%d, copyV[%p]=%d\n", &slice, slice, &copySlice, copySlice)
 
 		fmt.Println("Изменим значение copySlice")
